@@ -27,7 +27,9 @@ export class ElectronService implements OnModuleInit {
             await this.installExtensions();
         }
 
-        this.mainWindow = new BrowserWindow({ width: 800, height: 600 });
+        this.mainWindow = new BrowserWindow({ width: 800, height: 600, webPreferences: {
+                nodeIntegration: true
+            } });
 
         if (process.env.NODE_ENV !== 'production') {
             process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = '1'; // eslint-disable-line require-atomic-updates
