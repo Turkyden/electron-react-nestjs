@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+const nodeExternals = require('webpack-node-externals');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 const baseConfig = require('./webpack.base.config');
@@ -10,6 +11,7 @@ module.exports = merge.smart(baseConfig, {
     entry: {
         main: './src/main/main.ts'
     },
+    externals: [nodeExternals()],
     module: {
         rules: [
             {
@@ -35,7 +37,6 @@ module.exports = merge.smart(baseConfig, {
         ]
     },
     plugins: [
-        new webpack.NormalModuleReplacementPlugin(/^mqtt$/, "mqtt/dist/mqtt.js"),
         new ForkTsCheckerWebpackPlugin({
             reportFiles: ['src/main/**/*']
         }),
