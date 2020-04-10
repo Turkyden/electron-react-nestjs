@@ -11,6 +11,9 @@ module.exports = merge.smart(baseConfig, {
     entry: {
         main: './src/main/main.ts'
     },
+    optimization: {
+        minimize: false
+    },
     externals: [nodeExternals()],
     module: {
         rules: [
@@ -29,6 +32,7 @@ module.exports = merge.smart(baseConfig, {
                         '@babel/preset-typescript'
                     ],
                     plugins: [
+                        "babel-plugin-transform-typescript-metadata",
                         ["@babel/plugin-proposal-decorators", { "legacy": true }],
                         ['@babel/plugin-proposal-class-properties', { loose: true }]
                     ]
